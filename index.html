@@ -138,7 +138,7 @@
 
             <label for="helpType" data-key="help_type_label">З чим потрібна допомога:</label>
             <select id="helpType" required>
-                <option value="">— виберіть —</option>
+                <option value=""data-key="select">— виберіть —</option>
                 <option value="налаштування сервера (платне)" data-key="opt_setup">Налаштування сервера (платне)</option>
                 <option value="захист від крашів" data-key="opt_crash">Захист від крашів / анти-краш</option>
                 <option value="інше" data-key="opt_other">Інше</option>
@@ -146,7 +146,7 @@
 
             <label for="version" data-key="version_label">Версія Minecraft:</label>
             <select id="version" required>
-                <option value="">— виберіть —</option>
+                <option value=""data-key="select">— виберіть —</option>
                 <option value="1.16.5">1.16.5</option>
                 <option value="1.17">1.17</option>
                 <option value="1.17.1">1.17.1</option>
@@ -173,7 +173,7 @@
 
             <label for="host" data-key="host_label">Хостинг:</label>
             <select id="host" required>
-                <option value="">— виберіть —</option>
+                <option value=""data-key="select">— виберіть —</option>
                 <option value="Aternos">Aternos</option>
                 <option value="платний хост">Платний хост</option>
             </select>
@@ -193,6 +193,7 @@
                 title: "Замовити допомогу з сервером",
                 info: "<strong>Важливо!</strong><br>Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>Відповідь може прийти від кількох годин до кількох днів.",
                 discord_label: "Твій Discord:",
+                select: "— виберіть —",
                 help_type_label: "З чим потрібна допомога:",
                 opt_setup: "Налаштування сервера (платне)",
                 opt_crash: "Захист від крашів / анти-краш",
@@ -211,6 +212,7 @@
                 help_type_label: "What help do you need:",
                 opt_setup: "Server setup (paid)",
                 opt_crash: "Crash protection / anti-crash",
+                select: "— select —",
                 opt_other: "Other",
                 version_label: "Minecraft Version:",
                 host_label: "Hosting:",
@@ -227,6 +229,7 @@
                 opt_setup: "Настройка сервера (платно)",
                 opt_crash: "Защита от крашей / анти-краш",
                 opt_other: "Другое",
+                select: "выберите",
                 version_label: "Версия Minecraft:",
                 host_label: "Хостинг:",
                 submit_btn: "Отправить заявку",
