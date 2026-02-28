@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Допомога з Minecraft Серверами</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0a0e17;
+            color: #e0e7ff;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(rgba(10, 14, 23, 0.92), rgba(10, 14, 23, 0.92)),
+                              url('https://images.unsplash.com/photo-1587573089735-0d8e2f5c5e6e?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .container {
+            background: linear-gradient(135deg, #111827 0%, #1e293b 100%);
+            padding: 35px 25px;
+            border-radius: 16px;
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.3);
+            max-width: 500px;
+            width: 92%;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        .lang-switcher {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            margin: 0 6px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: #6366f1;
+            transform: scale(1.08);
+        }
+        .lang-btn:hover {
+            background: #818cf8;
+        }
+        h1 {
+            text-align: center;
+            color: #60a5fa;
+            margin: 0 0 25px 0;
+            font-size: 2rem;
+        }
+        .info-box {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid #4f46e5;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 30px;
+            font-size: 0.98rem;
+            line-height: 1.45;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #c7d2fe;
+        }
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 13px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #4f46e5;
+            border-radius: 8px;
+            background: #1e293b;
+            color: white;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus {
+            outline: none;
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.25);
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(90deg, #6366f1, #8b5cf6);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button[type="submit"]:hover {
+            background: linear-gradient(90deg, #8b5cf6, #a78bfa);
+            transform: translateY(-2px);
+        }
+        #status {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+        .success { color: #34d399; }
+        .error   { color: #f87171; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="lang-switcher">
+            <button class="lang-btn" data-lang="uk">Укр</button>
+            <button class="lang-btn" data-lang="en">En</button>
+            <button class="lang-btn" data-lang="ru">Рус</button>
+        </div>
+
+        <h1 data-key="title">Замовити допомогу з сервером</h1>
+
+        <div class="info-box" data-key="info">
+            <strong>Важливо!</strong><br>
+            Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>
+            Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>
+            Відповідь може прийти від кількох годин до кількох днів.
+        </div>
+
+        <form id="helpForm">
+            <label for="discord" data-key="discord_label">Твій Discord:</label>
+            <input type="text" id="discord" placeholder="@username або username#0000" required>
+
+            <label for="helpType" data-key="help_type_label">З чим потрібна допомога:</label>
+            <select id="helpType" required>
+                <option value="">— виберіть —</option>
+                <option value="налаштування сервера (платне)" data-key="opt_setup">Налаштування сервера (платне)</option>
+                <option value="захист від крашів" data-key="opt_crash">Захист від крашів / анти-краш</option>
+                <option value="інше" data-key="opt_other">Інше</option>
+            </select>
+
+            <label for="version" data-key="version_label">Версія Minecraft:</label>
+            <select id="version" required>
+                <option value="">— виберіть —</option>
+                <option value="1.16.5">1.16.5</option>
+                <option value="1.17">1.17</option>
+                <option value="1.17.1">1.17.1</option>
+                <option value="1.18">1.18</option>
+                <option value="1.18.1">1.18.1</option>
+                <option value="1.18.2">1.18.2</option>
+                <option value="1.19">1.19</option>
+                <option value="1.19.2">1.19.2</option>
+                <option value="1.19.3">1.19.3</option>
+                <option value="1.19.4">1.19.4</option>
+                <option value="1.20">1.20</option>
+                <option value="1.20.1">1.20.1</option>
+                <option value="1.20.2">1.20.2</option>
+                <option value="1.20.4">1.20.4</option>
+                <option value="1.20.6">1.20.6</option>
+                <option value="1.21">1.21</option>
+                <option value="1.21.1">1.21.1</option>
+                <option value="1.21.3">1.21.3</option>
+                <option value="1.21.5">1.21.5</option>
+                <option value="1.21.8">1.21.8</option>
+                <option value="1.21.10">1.21.10</option>
+                <option value="1.21.11">1.21.11</option>
+            </select>
+
+            <label for="host" data-key="host_label">Хостинг:</label>
+            <select id="host" required>
+                <option value="">— виберіть —</option>
+                <option value="Aternos">Aternos</option>
+                <option value="платний хост">Платний хост</option>
+            </select>
+
+            <button type="submit" data-key="submit_btn">Надіслати заявку</button>
+        </form>
+
+        <div id="status"></div>
+    </div>
+
+    <script>
+        const webhookUrl = "https://discord.com/api/webhooks/1477324742380883989/wx_RModqDqooQVwDN00Lmlz1ovPplH_Turyv36uSaVO5HTtntAklA9CLRxTGdgOIXFCJ";
+
+        // Переклади
+        const translations = {
+            uk: {
+                title: "Замовити допомогу з сервером",
+                info: "<strong>Важливо!</strong><br>Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>Відповідь може прийти від кількох годин до кількох днів.",
+                discord_label: "Твій Discord:",
+                help_type_label: "З чим потрібна допомога:",
+                opt_setup: "Налаштування сервера (платне)",
+                opt_crash: "Захист від крашів / анти-краш",
+                opt_other: "Інше",
+                version_label: "Версія Minecraft:",
+                host_label: "Хостинг:",
+                submit_btn: "Надіслати заявку",
+                status_success: "Заявку надіслано! Перевірте Discord. Відповідь може прийти від кількох годин до кількох днів.",
+                status_error: "Помилка відправки. Спробуйте ще раз.",
+                status_fill: "Заповніть усі поля!"
+            },
+            en: {
+                title: "Order Server Help",
+                info: "<strong>Important!</strong><br>Be sure to correctly specify your Discord (e.g. @ivan or ivan#1337), otherwise we won't be able to contact you.<br><br>If you didn't receive a message in Discord — check the spelling of your nickname and submit the request again.<br>Response may take from a few hours to several days.",
+                discord_label: "Your Discord:",
+                help_type_label: "What help do you need:",
+                opt_setup: "Server setup (paid)",
+                opt_crash: "Crash protection / anti-crash",
+                opt_other: "Other",
+                version_label: "Minecraft Version:",
+                host_label: "Hosting:",
+                submit_btn: "Submit Request",
+                status_success: "Request sent! Check Discord. Response may take from a few hours to several days.",
+                status_error: "Sending error. Try again.",
+                status_fill: "Fill in all fields!"
+            },
+            ru: {
+                title: "Заказать помощь с сервером",
+                info: "<strong>Важно!</strong><br>Обязательно указывайте правильно свой Discord (например @ivan или ivan#1337), иначе с вами не смогут связаться.<br><br>Если вам не пришло сообщение в Discord — проверьте правильность написания ника и отправьте заявку ещё раз.<br>Ответ может прийти от нескольких часов до нескольких дней.",
+                discord_label: "Ваш Discord:",
+                help_type_label: "С чем нужна помощь:",
+                opt_setup: "Настройка сервера (платно)",
+                opt_crash: "Защита от крашей / анти-краш",
+                opt_other: "Другое",
+                version_label: "Версия Minecraft:",
+                host_label: "Хостинг:",
+                submit_btn: "Отправить заявку",
+                status_success: "Заявка отправлена! Проверьте Discord. Ответ может прийти от нескольких часов до нескольких дней.",
+                status_error: "Ошибка отправки. Попробуйте ещё раз.",
+                status_fill: "Заполните все поля!"
+            }
+        };
+
+        // Функція визначення мови
+        function detectInitialLanguage() {
+            const savedLang = localStorage.getItem('lang');
+            if (savedLang && ['uk', 'en', 'ru'].includes(savedLang)) {
+                return savedLang;
+            }
+
+            // Беремо з браузера
+            const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+
+            if (browserLang.startsWith('uk') || browserLang.startsWith('ua')) {
+                return 'uk';
+            }
+            if (browserLang.startsWith('ru')) {
+                return 'ru';
+            }
+            // Все інше — англійська
+            return 'en';
+        }
+
+        let currentLang = detectInitialLanguage();
+
+        // Функція перемикання мови
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('lang', lang);
+
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Оновити опції select
+            document.querySelectorAll('#helpType option[data-key]').forEach(opt => {
+                const key = opt.getAttribute('data-key');
+                if (translations[lang][key]) {
+                    opt.textContent = translations[lang][key];
+                }
+            });
+
+            // Активна кнопка
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+        }
+
+        // Ініціалізація
+        setLanguage(currentLang);
+
+        // Кнопки перемикання
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                setLanguage(btn.dataset.lang);
+            });
+        });
+
+        // Форма (решта коду без змін)
+        document.getElementById("helpForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const discord  = document.getElementById("discord").value.trim();
+            const helpType = document.getElementById("helpType").value;
+            const version  = document.getElementById("version").value;
+            const host     = document.getElementById("host").value;
+
+            if (!discord || !helpType || !version || !host) {
+                showStatus(translations[currentLang].status_fill, "error");
+                return;
+            }
+
+            let messageText = helpType;
+            if (helpType === "інше") {
+                messageText = translations[currentLang].opt_other + " (деталі не вказані)";
+            }
+
+            const payload = {
+                embeds: [{
+                    title: translations[currentLang].title,
+                    color: 0x6366f1,
+                    fields: [
+                        { name: "Discord", value: discord, inline: true },
+                        { name: translations[currentLang].help_type_label, value: messageText, inline: true },
+                        { name: translations[currentLang].version_label, value: version, inline: true },
+                        { name: translations[currentLang].host_label, value: host, inline: true }
+                    ],
+                    timestamp: new Date().toISOString()
+                }]
+            };
+
+            try {
+                const res = await fetch(webhookUrl, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    showStatus(translations[currentLang].status_success, "success");
+                    document.getElementById("helpForm").reset();
+                } else {
+                    showStatus(translations[currentLang].status_error, "error");
+                }
+            } catch (err) {
+                showStatus(translations[currentLang].status_error + " " + err.message, "error");
+            }
+        });
+
+        function showStatus(text, type) {
+            const status = document.getElementById("status");
+            status.textContent = text;
+            status.className = type;
+        }
+    </script>
+
+</body>
+</html>
