@@ -22,9 +22,7 @@
       --success: #aed581;
       --error: #ef5350;
     }
-
     * { margin:0; padding:0; box-sizing:border-box; }
-
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--bg-gradient);
@@ -33,16 +31,15 @@
       display: grid;
       place-items: center;
       padding: 1.5rem;
-      background-image: 
+      background-image:
         radial-gradient(circle at 15% 25%, rgba(100,200,80,0.09) 0%, transparent 30%),
         radial-gradient(circle at 85% 75%, rgba(139,92,246,0.07) 0%, transparent 40%),
         var(--bg-gradient),
-        url('https://wallpapers.com/images/hd/minecraft-background-3z7z4t0z9v95q3g0.jpg'); /* Minecraft-themed background */
+       url('https://wallpapers.com/images/hd/minecraft-background-3z7z4t0z9v95q3g0.jpg');
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
     }
-
     .container {
       background: var(--glass);
       backdrop-filter: blur(20px) saturate(1.2);
@@ -52,38 +49,33 @@
       padding: 2.5rem 2rem;
       width: 100%;
       max-width: 500px;
-      box-shadow: 
+      box-shadow:
         0 20px 50px -15px rgba(0,0,0,0.4),
         inset 0 1px 0 rgba(255,255,255,0.06);
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
       animation: liquidFlow 10s ease infinite, fadeIn 1s ease-out;
     }
-
     @keyframes liquidFlow {
       0% { background-position: 0% 50%; backdrop-filter: blur(20px) saturate(1.2); }
       50% { background-position: 100% 50%; backdrop-filter: blur(24px) saturate(1.4); }
       100% { background-position: 0% 50%; backdrop-filter: blur(20px) saturate(1.2); }
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     .container:hover {
       transform: translateY(-8px);
-      box-shadow: 
+      box-shadow:
         0 30px 70px -20px var(--accent-glow),
         inset 0 1px 0 rgba(255,255,255,0.08);
     }
-
     .lang-switcher {
       display: flex;
       justify-content: center;
       gap: 0.8rem;
       margin-bottom: 2rem;
     }
-
     .lang-btn {
       background: rgba(100,200,80,0.18);
       color: white;
@@ -95,7 +87,6 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     .lang-btn:hover { background: rgba(100,200,80,0.35); transform: translateY(-2px) scale(1.05); }
     .lang-btn.active {
       background: linear-gradient(90deg, var(--accent), #689f38);
@@ -103,10 +94,9 @@
       box-shadow: 0 0 25px var(--accent-glow);
       transform: scale(1.06);
     }
-
     h1 {
       text-align: center;
-      font-family: 'Press Start 2P', cursive; /* Pixel Minecraft font */
+      font-family: 'Press Start 2P', cursive;
       font-size: 1.6rem;
       font-weight: 400;
       color: #ffffff;
@@ -115,12 +105,10 @@
       letter-spacing: 0.05em;
       animation: pixelGlow 2s ease infinite alternate;
     }
-
     @keyframes pixelGlow {
       0% { text-shadow: 0 0 8px #4caf50; }
       100% { text-shadow: 0 0 16px #4caf50; }
     }
-
     .info-box {
       background: rgba(50,80,40,0.38);
       border: 1px solid rgba(100,200,80,0.22);
@@ -132,7 +120,6 @@
       backdrop-filter: blur(10px);
       box-shadow: inset 0 0 10px rgba(100,200,80,0.1);
     }
-
     label {
       display: flex;
       align-items: center;
@@ -142,9 +129,7 @@
       color: var(--text-secondary);
       font-size: 0.97rem;
     }
-
     label i { color: var(--accent); font-size: 1.2rem; }
-
     input[type="text"],
     select {
       width: 100%;
@@ -158,14 +143,12 @@
       transition: all 0.25s ease;
       backdrop-filter: blur(6px);
     }
-
     input:focus, select:focus {
       outline: none;
       border-color: var(--accent-hover);
       box-shadow: 0 0 0 4px rgba(100,200,80,0.22);
       background: rgba(50,80,40,0.6);
     }
-
     .no-discord-link {
       display: inline-block;
       color: #81c784;
@@ -175,9 +158,7 @@
       margin: -1rem 0 1.6rem;
       transition: color 0.2s, transform 0.2s;
     }
-
     .no-discord-link:hover { color: #a5d6a7; transform: translateX(4px); }
-
     button[type="submit"] {
       width: 100%;
       padding: 1.2rem;
@@ -197,31 +178,25 @@
       justify-content: center;
       gap: 0.5rem;
     }
-
     button[type="submit"] i { font-size: 1.2rem; }
-
     @keyframes gradientFlow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
     @keyframes buttonPulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.02); }
       100% { transform: scale(1); }
     }
-
     button[type="submit"]:hover {
       transform: translateY(-4px) scale(1.03);
       box-shadow: 0 18px 40px -12px rgba(139,92,246,0.55);
     }
-
     button[type="submit"]:active {
       transform: translateY(0) scale(1);
       box-shadow: 0 6px 20px rgba(100,200,80,0.4);
     }
-
     #status {
       margin-top: 1.6rem;
       text-align: center;
@@ -230,12 +205,9 @@
       text-shadow: 0 2px 8px rgba(0,0,0,0.3);
       animation: fadeIn 0.5s ease;
     }
-
     .success { color: var(--success); }
-    .error   { color: var(--error); }
-
+    .error { color: var(--error); }
     .hidden { display: none !important; }
-
     @media (max-width: 480px) {
       .container { padding: 2rem 1.6rem; }
       h1 { font-size: 1.4rem; }
@@ -243,32 +215,25 @@
   </style>
 </head>
 <body>
-
 <div class="container">
   <div class="lang-switcher">
     <button class="lang-btn" data-lang="uk">Укр</button>
     <button class="lang-btn" data-lang="en">En</button>
     <button class="lang-btn" data-lang="ru">Рус</button>
   </div>
-
   <h1 data-key="title">Замовити допомогу з сервером</h1>
-
   <div class="info-box" data-key="info">
     <strong>Важливо!</strong><br>
     Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>
     Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>
     Відповідь може прийти від кількох годин до кількох днів.
   </div>
-
   <form id="helpForm">
     <label for="discord" data-key="discord_label"><i class="fa-brands fa-discord"></i> Твій Discord:</label>
     <input type="text" id="discord" placeholder="@username або username#0000">
-
     <span id="no-discord" class="no-discord-link" data-key="no_discord">У мене немає Discord</span>
-
     <label for="telegram" class="hidden" data-key="telegram_label"><i class="fa-brands fa-telegram"></i> Твій Telegram:</label>
     <input type="text" id="telegram" class="hidden" placeholder="@username">
-
     <label for="helpType" data-key="help_type_label"><i class="fa-solid fa-question-circle"></i> З чим потрібна допомога:</label>
     <select id="helpType" required>
       <option value="" data-key="select">— виберіть —</option>
@@ -277,7 +242,6 @@
       <option value="захист від крашів" data-key="opt_crash">Захист від крашів / анти-краш</option>
       <option value="інше" data-key="opt_other">Інше</option>
     </select>
-
     <label for="version" data-key="version_label"><i class="fa-solid fa-cubes"></i> Версія Minecraft:</label>
     <select id="version" required>
       <option value="" data-key="select">— виберіть —</option>
@@ -308,7 +272,6 @@
       <option value="1.21.10">1.21.10</option>
       <option value="1.21.11">1.21.11</option>
     </select>
-
     <label for="host" data-key="host_label"><i class="fa-solid fa-server"></i> Хостинг:</label>
     <select id="host" required>
       <option value="" data-key="select">— виберіть —</option>
@@ -317,15 +280,13 @@
       <option value="платний">Платний хост</option>
       <option value="інше">Інше</option>
     </select>
-
     <button type="submit" data-key="submit_btn"><i class="fa-solid fa-paper-plane"></i> Надіслати заявку</button>
   </form>
-
   <div id="status"></div>
 </div>
 
 <script>
-const webhookUrl = "https://discord.com/api/webhooks/1477324742380883989/wx_RModqDqooQVwDN00Lmlz1ovPplH_Turyv36uSaVO5HTtntAklA9CLRxTGdgOIXFCJ";
+const proxyUrl = "https://red-sea-87d9minecraft-help-proxy.kotikigromanko.workers.dev/";
 
 const translations = {
   uk: {
@@ -411,7 +372,6 @@ function setLanguage(lang) {
       else el.innerHTML = translations[lang][key];
     }
   });
-  // Оновити опції селектів
   document.querySelectorAll('option[data-key]').forEach(opt => {
     const key = opt.getAttribute('data-key');
     if (translations[lang][key]) opt.textContent = translations[lang][key];
@@ -450,10 +410,12 @@ function checkDailyLimit() {
 
 document.getElementById("helpForm").addEventListener("submit", async (e) => {
   e.preventDefault();
+
   if (!checkDailyLimit()) {
     showStatus(translations[currentLang].status_limit, "error");
     return;
   }
+
   const discord = document.getElementById("discord").value.trim();
   const telegram = document.getElementById("telegram").value.trim();
   const contact = discord || telegram;
@@ -461,14 +423,17 @@ document.getElementById("helpForm").addEventListener("submit", async (e) => {
   const helpType = document.getElementById("helpType").value;
   const version = document.getElementById("version").value;
   const host = document.getElementById("host").value;
+
   if (!contact || !helpType || !version || !host) {
     showStatus(translations[currentLang].status_fill, "error");
     return;
   }
+
   let messageText = helpType;
   if (helpType === "інше" || helpType === "Other" || helpType === "Другое") {
     messageText = translations[currentLang].opt_other + " (деталі не вказані)";
   }
+
   const payload = {
     embeds: [{
       title: translations[currentLang].title,
@@ -482,12 +447,14 @@ document.getElementById("helpForm").addEventListener("submit", async (e) => {
       timestamp: new Date().toISOString()
     }]
   };
+
   try {
-    const res = await fetch(webhookUrl, {
+    const res = await fetch(proxyUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
+
     if (res.ok) {
       showStatus(translations[currentLang].status_success, "success");
       document.getElementById("helpForm").reset();
@@ -497,7 +464,7 @@ document.getElementById("helpForm").addEventListener("submit", async (e) => {
       document.getElementById('telegram').classList.add('hidden');
       document.querySelector('label[for="telegram"]').classList.add('hidden');
     } else {
-      showStatus(translations[currentLang].status_error, "error");
+      showStatus(translations[currentLang].status_error + ` (код: ${res.status})`, "error");
     }
   } catch (err) {
     showStatus(translations[currentLang].status_error + " " + err.message, "error");
