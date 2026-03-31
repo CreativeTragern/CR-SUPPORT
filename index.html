@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Допомога з Minecraft Серверами</title>
 
-  <!-- Preload для швидшого завантаження іконок -->
+  <!-- Preload Font Awesome -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -32,7 +32,7 @@
       --error: #ef5350;
     }
 
-    /* Виправлення блимання іконок */
+    /* Важливе виправлення для іконок */
     .fa, .fas, .far, .fab {
       font-display: swap;
     }
@@ -78,19 +78,30 @@
     #geo-block p { font-size: 1.15rem; max-width: 620px; line-height: 1.7; color: #c5e1a5; }
 
     .lang-switcher { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; }
-    .lang-btn { background: rgba(100,200,80,0.18); color: white; border: 1px solid rgba(100,200,80,0.35); padding: 0.6rem 1.25rem; border-radius: 9999px; font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: all 0.3s ease; }
-    .lang-btn:hover { background: rgba(100,200,80,0.35); }
-    .lang-btn.active { background: linear-gradient(90deg, var(--accent), #689f38); border-color: transparent; box-shadow: 0 0 25px var(--accent-glow); transform: scale(1.06); }
+    .lang-btn { 
+      background: rgba(100,200,80,0.18); color: white; border: 1px solid rgba(100,200,80,0.35); 
+      padding: 0.6rem 1.25rem; border-radius: 9999px; font-weight: 600; font-size: 0.92rem; 
+      cursor: pointer; transition: all 0.3s ease; 
+    }
+    .lang-btn:hover { background: rgba(100,200,80,0.35); transform: translateY(-2px) scale(1.05); }
+    .lang-btn.active { 
+      background: linear-gradient(90deg, var(--accent), #689f38); border-color: transparent; 
+      box-shadow: 0 0 25px var(--accent-glow); transform: scale(1.06); 
+    }
 
-    h1 { text-align: center; font-family: 'Press Start 2P', cursive; font-size: 1.6rem; text-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50; margin-bottom: 1.8rem; animation: pixelGlow 2s ease infinite alternate; }
+    h1 { 
+      text-align: center; font-family: 'Press Start 2P', cursive; font-size: 1.6rem; 
+      text-shadow: 0 0 10px #4caf50, 0 0 20px #4caf50; margin-bottom: 1.8rem; 
+      animation: pixelGlow 2s ease infinite alternate; 
+    }
     @keyframes pixelGlow { 0% { text-shadow: 0 0 8px #4caf50; } 100% { text-shadow: 0 0 16px #4caf50; } }
 
     .info-box { background: rgba(50,80,40,0.38); border: 1px solid rgba(100,200,80,0.22); border-radius: 1.25rem; padding: 1.4rem 1.6rem; margin-bottom: 2.2rem; font-size: 0.96rem; line-height: 1.6; }
     label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; font-weight: 600; color: var(--text-secondary); font-size: 0.97rem; }
     label i { color: var(--accent); font-size: 1.25rem; }
-    input[type="text"], select {
-      width: 100%; padding: 1rem 1.2rem; margin-bottom: 1.5rem; border: 1px solid rgba(100,200,80,0.32);
-      border-radius: 1rem; background: rgba(50,80,40,0.45); color: white; font-size: 1rem;
+    input[type="text"], select { 
+      width: 100%; padding: 1rem 1.2rem; margin-bottom: 1.5rem; border: 1px solid rgba(100,200,80,0.32); 
+      border-radius: 1rem; background: rgba(50,80,40,0.45); color: white; font-size: 1rem; 
     }
     input:focus, select:focus { outline: none; border-color: var(--accent-hover); box-shadow: 0 0 0 4px rgba(100,200,80,0.22); background: rgba(50,80,40,0.6); }
 
@@ -208,20 +219,62 @@ const translations = {
   uk: {
     title: "Замовити допомогу з сервером",
     info: "<strong>Важливо!</strong><br>Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>Відповідь може прийти від кількох годин до кількох днів.",
-    discord_label: "Твій Discord:", no_discord: "У мене немає Discord", telegram_label: "Твій Telegram:",
-    select: "— виберіть —", help_type_label: "З чим потрібна допомога:", opt_setup: "Налаштування сервера",
-    create: "Створення сервера", opt_crash: "Захист від крашів / анти-краш", opt_other: "Інше",
-    version_label: "Версія Minecraft:", host_label: "Хостинг:", submit_btn: "Надіслати заявку",
+    discord_label: "Твій Discord:",
+    no_discord: "У мене немає Discord",
+    telegram_label: "Твій Telegram:",
+    select: "— виберіть —",
+    help_type_label: "З чим потрібна допомога:",
+    opt_setup: "Налаштування сервера",
+    create: "Створення сервера",
+    opt_crash: "Захист від крашів / анти-краш",
+    opt_other: "Інше",
+    version_label: "Версія Minecraft:",
+    host_label: "Хостинг:",
+    submit_btn: "Надіслати заявку",
     status_success: "Заявку надіслано! Перевірте Discord. Відповідь може прийти від кількох годин до кількох днів.",
-    status_error: "Помилка. Спробуйте пізніше.", status_fill: "Заповніть усі поля!", status_limit: "Ви вже надіслали 3 заявки сьогодні. Спробуйте завтра."
+    status_error: "Помилка. Спробуйте пізніше.",
+    status_fill: "Заповніть усі поля!",
+    status_limit: "Ви вже надіслали 3 заявки сьогодні. Спробуйте завтра."
   },
-  en: { /* скорочено для економії місця, але всі ключі є */ 
-    title: "Order Server Help", status_error: "Error. Try later.", status_limit: "You have already sent 3 requests today. Try tomorrow."
-    // ... (всі інші ключі як у попередніх версіях)
+  en: {
+    title: "Order Server Help",
+    info: "<strong>Important!</strong><br>Be sure to correctly specify your Discord (e.g. @ivan or ivan#1337), otherwise we won't be able to contact you.<br><br>If you didn't receive a message in Discord — check the spelling of your nickname and submit the request again.<br>Response may take from a few hours to several days.",
+    discord_label: "Your Discord:",
+    no_discord: "I don't have Discord",
+    telegram_label: "Your Telegram:",
+    select: "— select —",
+    help_type_label: "What help do you need:",
+    opt_setup: "Server setup",
+    create: "Server creation",
+    opt_crash: "Crash protection / anti-crash",
+    opt_other: "Other",
+    version_label: "Minecraft Version:",
+    host_label: "Hosting:",
+    submit_btn: "Submit Request",
+    status_success: "Request sent! Check Discord. Response may take from a few hours to several days.",
+    status_error: "Error. Try later.",
+    status_fill: "Fill in all fields!",
+    status_limit: "You have already sent 3 requests today. Try tomorrow."
   },
   ru: {
-    title: "Заказать помощь с сервером", status_error: "Ошибка. Попробуйте позже.", status_limit: "Вы уже отправили 3 заявки сегодня. Попробуйте завтра."
-    // ... (всі інші ключі як раніше)
+    title: "Заказать помощь с сервером",
+    info: "<strong>Важно!</strong><br>Обязательно указывайте правильно свой Discord (например @ivan или ivan#1337), иначе с вами не смогут связаться.<br><br>Если вам не пришло сообщение в Discord — проверьте правильность написания ника и отправьте заявку ещё раз.<br>Ответ может прийти от нескольких часов до нескольких дней.",
+    discord_label: "Ваш Discord:",
+    no_discord: "У меня нет Discord",
+    telegram_label: "Ваш Telegram:",
+    select: "— выберите —",
+    help_type_label: "С чем нужна помощь:",
+    opt_setup: "Настройка сервера",
+    create: "Создание сервера",
+    opt_crash: "Защита от крашей / анти-краш",
+    opt_other: "Другое",
+    version_label: "Версия Minecraft:",
+    host_label: "Хостинг:",
+    submit_btn: "Отправить заявку",
+    status_success: "Заявка отправлена! Проверьте Discord. Ответ может прийти от нескольких часов до нескольких дней.",
+    status_error: "Ошибка. Попробуйте позже.",
+    status_fill: "Заполните все поля!",
+    status_limit: "Вы уже отправили 3 заявки сегодня. Попробуйте завтра."
   }
 };
 
@@ -234,7 +287,7 @@ async function checkCountryBlock() {
       document.getElementById('geo-block').style.display = 'flex';
       return true;
     }
-  } catch (e) {}
+  } catch (e) { console.warn('Не вдалося перевірити країну'); }
   return false;
 }
 
@@ -253,24 +306,37 @@ function initApp() {
   function setLanguage(lang) {
     currentLang = lang;
     localStorage.setItem('lang', lang);
+
+    // Оновлюємо всі елементи з data-key
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.getAttribute('data-key');
       if (translations[lang][key]) {
-        if (el.tagName === 'SPAN' || el.tagName === 'BUTTON') el.textContent = translations[lang][key];
-        else el.innerHTML = translations[lang][key];
+        if (el.tagName === 'SPAN' || el.tagName === 'BUTTON') {
+          el.textContent = translations[lang][key];
+        } else {
+          el.innerHTML = translations[lang][key];
+        }
       }
     });
+
+    // Оновлюємо options в select
     document.querySelectorAll('option[data-key]').forEach(opt => {
       const key = opt.getAttribute('data-key');
       if (translations[lang][key]) opt.textContent = translations[lang][key];
     });
-    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+
+    // Активна кнопка мови
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
   }
 
   currentLang = detectInitialLanguage();
   setLanguage(currentLang);
 
-  document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
 
   // Логіка "немає Discord"
   document.getElementById('no-discord').addEventListener('click', () => {
@@ -329,11 +395,12 @@ function initApp() {
       return;
     }
 
-    // Блокування кнопки
+    // Блокування кнопки під час відправки
     const originalHTML = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    btnText.textContent = "Відправляємо...";
-    submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Відправляємо...`;
+    btnText.textContent = currentLang === 'uk' ? "Відправляємо..." : 
+                          currentLang === 'ru' ? "Отправляем..." : "Sending...";
+    submitBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> ${btnText.textContent}`;
 
     let messageText = helpType;
     if (["інше", "Other", "Другое"].includes(helpType)) {
@@ -362,10 +429,10 @@ function initApp() {
       });
 
       if (res.ok) {
-        incrementLimit();   // ліміт +1 тільки при успіху
+        incrementLimit();
         showStatus(translations[currentLang].status_success, "success");
         form.reset();
-        // повернення Discord поля
+        // Повернення полів Discord
         document.getElementById('discord').classList.remove('hidden');
         document.querySelector('label[for="discord"]').classList.remove('hidden');
         document.getElementById('no-discord').classList.remove('hidden');
@@ -378,16 +445,18 @@ function initApp() {
       showStatus(translations[currentLang].status_error, "error");
     }
 
-    // Повернення кнопки
+    // Повернення кнопки в початковий стан
     submitBtn.disabled = false;
     submitBtn.innerHTML = originalHTML;
   });
 }
 
-// Запуск
+// Запуск сайту
 window.addEventListener('load', async () => {
   const blocked = await checkCountryBlock();
-  if (!blocked) initApp();
+  if (!blocked) {
+    initApp();
+  }
 });
 </script>
 </body>
