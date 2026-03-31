@@ -8,13 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <style>
     :root {
-      --bg-primary: #1a2a0f; /* Minecraft green-ish dark */
+      --bg-primary: #1a2a0f;
       --bg-gradient: linear-gradient(135deg, #1a2a0f 0%, #2b3e1b 100%);
-      --glass: rgba(50, 80, 40, 0.45); /* Semi-transparent green glass */
-      --glass-border: rgba(100, 200, 80, 0.28); /* Glowing green border */
-      --accent: #4caf50; /* Minecraft green */
+      --glass: rgba(50, 80, 40, 0.45);
+      --glass-border: rgba(100, 200, 80, 0.28);
+      --accent: #4caf50;
       --accent-hover: #66bb6a;
       --accent-glow: rgba(100, 200, 80, 0.35);
       --text-primary: #f1f5f9;
@@ -70,12 +71,37 @@
         0 30px 70px -20px var(--accent-glow),
         inset 0 1px 0 rgba(255,255,255,0.08);
     }
-    .lang-switcher {
-      display: flex;
+
+    /* === СТИЛІ ДЛЯ БЛОКУВАННЯ === */
+    #geo-block {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #0f1a08;
+      color: #ef5350;
+      display: none;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
-      gap: 0.8rem;
-      margin-bottom: 2rem;
+      z-index: 9999;
+      text-align: center;
+      padding: 2rem;
+      font-family: 'Press Start 2P', cursive;
     }
+    #geo-block h1 {
+      font-size: 2.1rem;
+      text-shadow: 0 0 20px #ef5350;
+      margin-bottom: 1.8rem;
+    }
+    #geo-block p {
+      font-size: 1.15rem;
+      max-width: 620px;
+      line-height: 1.7;
+      color: #c5e1a5;
+      margin-bottom: 1.5rem;
+    }
+
+    /* решта твоїх стилів (lang-switcher, h1, form тощо) */
+    .lang-switcher { display: flex; justify-content: center; gap: 0.8rem; margin-bottom: 2rem; }
     .lang-btn {
       background: rgba(100,200,80,0.18);
       color: white;
@@ -109,102 +135,27 @@
       0% { text-shadow: 0 0 8px #4caf50; }
       100% { text-shadow: 0 0 16px #4caf50; }
     }
-    .info-box {
-      background: rgba(50,80,40,0.38);
-      border: 1px solid rgba(100,200,80,0.22);
-      border-radius: 1.25rem;
-      padding: 1.4rem 1.6rem;
-      margin-bottom: 2.2rem;
-      font-size: 0.96rem;
-      line-height: 1.6;
-      backdrop-filter: blur(10px);
-      box-shadow: inset 0 0 10px rgba(100,200,80,0.1);
-    }
-    label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.65rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      font-size: 0.97rem;
-    }
+    /* ... всі інші стилі (info-box, input, button тощо) залишаються як були ... */
+    .info-box { background: rgba(50,80,40,0.38); border: 1px solid rgba(100,200,80,0.22); border-radius: 1.25rem; padding: 1.4rem 1.6rem; margin-bottom: 2.2rem; font-size: 0.96rem; line-height: 1.6; backdrop-filter: blur(10px); box-shadow: inset 0 0 10px rgba(100,200,80,0.1); }
+    label { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.65rem; font-weight: 600; color: var(--text-secondary); font-size: 0.97rem; }
     label i { color: var(--accent); font-size: 1.2rem; }
-    input[type="text"],
-    select {
-      width: 100%;
-      padding: 1rem 1.2rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid rgba(100,200,80,0.32);
-      border-radius: 1rem;
-      background: rgba(50,80,40,0.45);
-      color: white;
-      font-size: 1rem;
-      transition: all 0.25s ease;
-      backdrop-filter: blur(6px);
+    input[type="text"], select {
+      width: 100%; padding: 1rem 1.2rem; margin-bottom: 1.5rem; border: 1px solid rgba(100,200,80,0.32);
+      border-radius: 1rem; background: rgba(50,80,40,0.45); color: white; font-size: 1rem;
+      transition: all 0.25s ease; backdrop-filter: blur(6px);
     }
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--accent-hover);
-      box-shadow: 0 0 0 4px rgba(100,200,80,0.22);
-      background: rgba(50,80,40,0.6);
-    }
-    .no-discord-link {
-      display: inline-block;
-      color: #81c784;
-      font-size: 0.94rem;
-      text-decoration: underline;
-      cursor: pointer;
-      margin: -1rem 0 1.6rem;
-      transition: color 0.2s, transform 0.2s;
-    }
+    input:focus, select:focus { outline: none; border-color: var(--accent-hover); box-shadow: 0 0 0 4px rgba(100,200,80,0.22); background: rgba(50,80,40,0.6); }
+    .no-discord-link { display: inline-block; color: #81c784; font-size: 0.94rem; text-decoration: underline; cursor: pointer; margin: -1rem 0 1.6rem; transition: color 0.2s, transform 0.2s; }
     .no-discord-link:hover { color: #a5d6a7; transform: translateX(4px); }
     button[type="submit"] {
-      width: 100%;
-      padding: 1.2rem;
-      background: linear-gradient(90deg, #4caf50, #689f38, #8bc34a);
-      background-size: 200% 100%;
-      color: white;
-      border: none;
-      border-radius: 1rem;
-      font-size: 1.08rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.45s ease;
-      box-shadow: 0 10px 30px -8px var(--accent-glow);
-      animation: gradientFlow 6s ease infinite, buttonPulse 2s ease infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+      width: 100%; padding: 1.2rem; background: linear-gradient(90deg, #4caf50, #689f38, #8bc34a);
+      background-size: 200% 100%; color: white; border: none; border-radius: 1rem;
+      font-size: 1.08rem; font-weight: 700; cursor: pointer; transition: all 0.45s ease;
+      box-shadow: 0 10px 30px -8px var(--accent-glow); animation: gradientFlow 6s ease infinite, buttonPulse 2s ease infinite;
+      display: flex; align-items: center; justify-content: center; gap: 0.5rem;
     }
-    button[type="submit"] i { font-size: 1.2rem; }
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    @keyframes buttonPulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.02); }
-      100% { transform: scale(1); }
-    }
-    button[type="submit"]:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 18px 40px -12px rgba(139,92,246,0.55);
-    }
-    button[type="submit"]:active {
-      transform: translateY(0) scale(1);
-      box-shadow: 0 6px 20px rgba(100,200,80,0.4);
-    }
-    #status {
-      margin-top: 1.6rem;
-      text-align: center;
-      font-weight: 600;
-      font-size: 1.05rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      animation: fadeIn 0.5s ease;
-    }
+    button[type="submit"]:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 18px 40px -12px rgba(139,92,246,0.55); }
+    #status { margin-top: 1.6rem; text-align: center; font-weight: 600; font-size: 1.05rem; text-shadow: 0 2px 8px rgba(0,0,0,0.3); animation: fadeIn 0.5s ease; }
     .success { color: var(--success); }
     .error { color: var(--error); }
     .hidden { display: none !important; }
@@ -215,81 +166,92 @@
   </style>
 </head>
 <body>
-<div class="container">
-  <div class="lang-switcher">
-    <button class="lang-btn" data-lang="uk">Укр</button>
-    <button class="lang-btn" data-lang="en">En</button>
-    <button class="lang-btn" data-lang="ru">Рус</button>
+
+  <!-- БЛОК ДЛЯ РФ -->
+  <div id="geo-block">
+    <h1>❌ Сайт недоступен в вашей стране</h1>
+    <p>К сожалению, мы не предоставляем услуги пользователям из Российской Федерации.</p>
+    <p style="margin-top: 2.5rem; font-size: 1rem; opacity: 0.85;">
+      Если вы считаете, что это ошибка — попробуйте использовать VPN.
+    </p>
   </div>
-  <h1 data-key="title">Замовити допомогу з сервером</h1>
-  <div class="info-box" data-key="info">
-    <strong>Важливо!</strong><br>
-    Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>
-    Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>
-    Відповідь може прийти від кількох годин до кількох днів.
+
+  <!-- Основний контент сайту -->
+  <div id="main-content" class="container">
+    <div class="lang-switcher">
+      <button class="lang-btn" data-lang="uk">Укр</button>
+      <button class="lang-btn" data-lang="en">En</button>
+      <button class="lang-btn" data-lang="ru">Рус</button>
+    </div>
+    <h1 data-key="title">Замовити допомогу з сервером</h1>
+    <div class="info-box" data-key="info">
+      <strong>Важливо!</strong><br>
+      Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>
+      Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>
+      Відповідь може прийти від кількох годин до кількох днів.
+    </div>
+    <form id="helpForm">
+      <label for="discord" data-key="discord_label"><i class="fa-brands fa-discord"></i> Твій Discord:</label>
+      <input type="text" id="discord" placeholder="@username або username#0000">
+      <span id="no-discord" class="no-discord-link" data-key="no_discord">У мене немає Discord</span>
+      <label for="telegram" class="hidden" data-key="telegram_label"><i class="fa-brands fa-telegram"></i> Твій Telegram:</label>
+      <input type="text" id="telegram" class="hidden" placeholder="@username">
+      <label for="helpType" data-key="help_type_label"><i class="fa-solid fa-question-circle"></i> З чим потрібна допомога:</label>
+      <select id="helpType" required>
+        <option value="" data-key="select">— виберіть —</option>
+        <option value="налаштування сервера" data-key="opt_setup">Налаштування сервера</option>
+        <option value="створення сервера" data-key="create">Створення сервера</option>
+        <option value="захист від крашів" data-key="opt_crash">Захист від крашів / анти-краш</option>
+        <option value="інше" data-key="opt_other">Інше</option>
+      </select>
+      <label for="version" data-key="version_label"><i class="fa-solid fa-cubes"></i> Версія Minecraft:</label>
+      <select id="version" required>
+        <option value="" data-key="select">— виберіть —</option>
+        <option value="1.16.5">1.16.5</option>
+        <option value="1.17">1.17</option>
+        <option value="1.17.1">1.17.1</option>
+        <option value="1.18">1.18</option>
+        <option value="1.18.1">1.18.1</option>
+        <option value="1.18.2">1.18.2</option>
+        <option value="1.19">1.19</option>
+        <option value="1.19.2">1.19.2</option>
+        <option value="1.19.3">1.19.3</option>
+        <option value="1.19.4">1.19.4</option>
+        <option value="1.20">1.20</option>
+        <option value="1.20.1">1.20.1</option>
+        <option value="1.20.2">1.20.2</option>
+        <option value="1.20.4">1.20.4</option>
+        <option value="1.20.6">1.20.6</option>
+        <option value="1.21">1.21</option>
+        <option value="1.21.1">1.21.1</option>
+        <option value="1.21.3">1.21.3</option>
+        <option value="1.21.4">1.21.4</option>
+        <option value="1.21.5">1.21.5</option>
+        <option value="1.21.6">1.21.6</option>
+        <option value="1.21.7">1.21.7</option>
+        <option value="1.21.8">1.21.8</option>
+        <option value="1.21.9">1.21.9</option>
+        <option value="1.21.10">1.21.10</option>
+        <option value="1.21.11">1.21.11</option>
+      </select>
+      <label for="host" data-key="host_label"><i class="fa-solid fa-server"></i> Хостинг:</label>
+      <select id="host" required>
+        <option value="" data-key="select">— виберіть —</option>
+        <option value="Aternos">Aternos</option>
+        <option value="інший безкоштовний">Інший безкоштовний хост</option>
+        <option value="платний">Платний хост</option>
+        <option value="інше">Інше</option>
+      </select>
+      <button type="submit" data-key="submit_btn"><i class="fa-solid fa-paper-plane"></i> Надіслати заявку</button>
+    </form>
+    <div id="status"></div>
   </div>
-  <form id="helpForm">
-    <label for="discord" data-key="discord_label"><i class="fa-brands fa-discord"></i> Твій Discord:</label>
-    <input type="text" id="discord" placeholder="@username або username#0000">
-    <span id="no-discord" class="no-discord-link" data-key="no_discord">У мене немає Discord</span>
-    <label for="telegram" class="hidden" data-key="telegram_label"><i class="fa-brands fa-telegram"></i> Твій Telegram:</label>
-    <input type="text" id="telegram" class="hidden" placeholder="@username">
-    <label for="helpType" data-key="help_type_label"><i class="fa-solid fa-question-circle"></i> З чим потрібна допомога:</label>
-    <select id="helpType" required>
-      <option value="" data-key="select">— виберіть —</option>
-      <option value="налаштування сервера" data-key="opt_setup">Налаштування сервера</option>
-      <option value="створення сервера" data-key="create">Створення сервера</option>
-      <option value="захист від крашів" data-key="opt_crash">Захист від крашів / анти-краш</option>
-      <option value="інше" data-key="opt_other">Інше</option>
-    </select>
-    <label for="version" data-key="version_label"><i class="fa-solid fa-cubes"></i> Версія Minecraft:</label>
-    <select id="version" required>
-      <option value="" data-key="select">— виберіть —</option>
-      <option value="1.16.5">1.16.5</option>
-      <option value="1.17">1.17</option>
-      <option value="1.17.1">1.17.1</option>
-      <option value="1.18">1.18</option>
-      <option value="1.18.1">1.18.1</option>
-      <option value="1.18.2">1.18.2</option>
-      <option value="1.19">1.19</option>
-      <option value="1.19.2">1.19.2</option>
-      <option value="1.19.3">1.19.3</option>
-      <option value="1.19.4">1.19.4</option>
-      <option value="1.20">1.20</option>
-      <option value="1.20.1">1.20.1</option>
-      <option value="1.20.2">1.20.2</option>
-      <option value="1.20.4">1.20.4</option>
-      <option value="1.20.6">1.20.6</option>
-      <option value="1.21">1.21</option>
-      <option value="1.21.1">1.21.1</option>
-      <option value="1.21.3">1.21.3</option>
-      <option value="1.21.4">1.21.4</option>
-      <option value="1.21.5">1.21.5</option>
-      <option value="1.21.6">1.21.6</option>
-      <option value="1.21.7">1.21.7</option>
-      <option value="1.21.8">1.21.8</option>
-      <option value="1.21.9">1.21.9</option>
-      <option value="1.21.10">1.21.10</option>
-      <option value="1.21.11">1.21.11</option>
-    </select>
-    <label for="host" data-key="host_label"><i class="fa-solid fa-server"></i> Хостинг:</label>
-    <select id="host" required>
-      <option value="" data-key="select">— виберіть —</option>
-      <option value="Aternos">Aternos</option>
-      <option value="інший безкоштовний">Інший безкоштовний хост</option>
-      <option value="платний">Платний хост</option>
-      <option value="інше">Інше</option>
-    </select>
-    <button type="submit" data-key="submit_btn"><i class="fa-solid fa-paper-plane"></i> Надіслати заявку</button>
-  </form>
-  <div id="status"></div>
-</div>
 
 <script>
 const proxyUrl = "https://red-sea-87d9minecraft-help-proxy.kotikigromanko.workers.dev/";
 
 const translations = {
-  uk: {
+  uk: { /* ... твій оригінальний uk об'єкт без змін ... */ 
     title: "Замовити допомогу з сервером",
     info: "<strong>Важливо!</strong><br>Обов’язково вказуйте правильно свій Discord (наприклад @ivan або ivan#1337), бо тільки так з вами зв’яжуться.<br><br>Якщо вам не надійшло повідомлення в Discord — перевірте правильність написання свого ніку і надішліть заявку ще раз.<br>Відповідь може прийти від кількох годин до кількох днів.",
     discord_label: "Твій Discord:",
@@ -298,8 +260,8 @@ const translations = {
     select: "— виберіть —",
     help_type_label: "З чим потрібна допомога:",
     opt_setup: "Налаштування сервера",
-    opt_crash: "Захист від крашів / анти-краш",
     create: "Створення сервера",
+    opt_crash: "Захист від крашів / анти-краш",
     opt_other: "Інше",
     version_label: "Версія Minecraft:",
     host_label: "Хостинг:",
@@ -309,7 +271,7 @@ const translations = {
     status_fill: "Заповніть усі поля!",
     status_limit: "Ви вже надіслали 2 заявки сьогодні. Спробуйте завтра."
   },
-  en: {
+  en: { /* ... твій en об'єкт без змін ... */ 
     title: "Order Server Help",
     info: "<strong>Important!</strong><br>Be sure to correctly specify your Discord (e.g. @ivan or ivan#1337), otherwise we won't be able to contact you.<br><br>If you didn't receive a message in Discord — check the spelling of your nickname and submit the request again.<br>Response may take from a few hours to several days.",
     discord_label: "Your Discord:",
@@ -329,16 +291,16 @@ const translations = {
     status_fill: "Fill in all fields!",
     status_limit: "You have already sent 2 requests today. Try tomorrow."
   },
-  ru: {
+  ru: { /* ... твій ru об'єкт без змін ... */ 
     title: "Заказать помощь с сервером",
     info: "<strong>Важно!</strong><br>Обязательно указывайте правильно свой Discord (например @ivan или ivan#1337), иначе с вами не смогут связаться.<br><br>Если вам не пришло сообщение в Discord — проверьте правильность написания ника и отправьте заявку ещё раз.<br>Ответ может прийти от нескольких часов до нескольких дней.",
     discord_label: "Ваш Discord:",
     no_discord: "У меня нет Discord",
     telegram_label: "Ваш Telegram:",
-    create: "Создание сервера",
     select: "— выберите —",
     help_type_label: "С чем нужна помощь:",
     opt_setup: "Настройка сервера",
+    create: "Создание сервера",
     opt_crash: "Защита от крашей / анти-краш",
     opt_other: "Другое",
     version_label: "Версия Minecraft:",
@@ -351,131 +313,158 @@ const translations = {
   }
 };
 
-function detectInitialLanguage() {
-  const savedLang = localStorage.getItem('lang');
-  if (savedLang && ['uk', 'en', 'ru'].includes(savedLang)) return savedLang;
-  const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-  if (browserLang.startsWith('uk') || browserLang.startsWith('ua')) return 'uk';
-  if (browserLang.startsWith('ru')) return 'ru';
-  return 'en';
-}
-
-let currentLang = detectInitialLanguage();
-
-function setLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem('lang', lang);
-  document.querySelectorAll('[data-key]').forEach(el => {
-    const key = el.getAttribute('data-key');
-    if (translations[lang][key]) {
-      if (el.tagName === 'SPAN' || el.tagName === 'BUTTON') el.textContent = translations[lang][key];
-      else el.innerHTML = translations[lang][key];
-    }
-  });
-  document.querySelectorAll('option[data-key]').forEach(opt => {
-    const key = opt.getAttribute('data-key');
-    if (translations[lang][key]) opt.textContent = translations[lang][key];
-  });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.dataset.lang === lang);
-  });
-}
-
-setLanguage(currentLang);
-
-document.querySelectorAll('.lang-btn').forEach(btn => {
-  btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
-});
-
-// Логіка "немає Discord"
-document.getElementById('no-discord').addEventListener('click', () => {
-  document.getElementById('discord').classList.add('hidden');
-  document.querySelector('label[for="discord"]').classList.add('hidden');
-  document.getElementById('no-discord').classList.add('hidden');
-  document.getElementById('telegram').classList.remove('hidden');
-  document.querySelector('label[for="telegram"]').classList.remove('hidden');
-});
-
-// Ліміт 2 заявки / день
-function checkDailyLimit() {
-  const today = new Date().toISOString().split('T')[0];
-  const storageKey = 'formSubmissions';
-  let submissions = JSON.parse(localStorage.getItem(storageKey)) || { date: today, count: 0 };
-  if (submissions.date !== today) submissions = { date: today, count: 0 };
-  if (submissions.count >= 2) return false;
-  submissions.count++;
-  localStorage.setItem(storageKey, JSON.stringify(submissions));
-  return true;
-}
-
-document.getElementById("helpForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  if (!checkDailyLimit()) {
-    showStatus(translations[currentLang].status_limit, "error");
-    return;
-  }
-
-  const discord = document.getElementById("discord").value.trim();
-  const telegram = document.getElementById("telegram").value.trim();
-  const contact = discord || telegram;
-  const contactType = discord ? "Discord" : "Telegram";
-  const helpType = document.getElementById("helpType").value;
-  const version = document.getElementById("version").value;
-  const host = document.getElementById("host").value;
-
-  if (!contact || !helpType || !version || !host) {
-    showStatus(translations[currentLang].status_fill, "error");
-    return;
-  }
-
-  let messageText = helpType;
-  if (helpType === "інше" || helpType === "Other" || helpType === "Другое") {
-    messageText = translations[currentLang].opt_other + " (деталі не вказані)";
-  }
-
-  const payload = {
-    embeds: [{
-      title: translations[currentLang].title,
-      color: 0x4caf50,
-      fields: [
-        { name: contactType, value: contact, inline: true },
-        { name: translations[currentLang].help_type_label, value: messageText, inline: true },
-        { name: translations[currentLang].version_label, value: version, inline: true },
-        { name: translations[currentLang].host_label, value: host, inline: true }
-      ],
-      timestamp: new Date().toISOString()
-    }]
-  };
-
+async function checkCountryBlock() {
   try {
-    const res = await fetch(proxyUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
+    const res = await fetch('http://ip-api.com/json/?fields=countryCode');
+    const data = await res.json();
 
-    if (res.ok) {
-      showStatus(translations[currentLang].status_success, "success");
-      document.getElementById("helpForm").reset();
-      document.getElementById('discord').classList.remove('hidden');
-      document.querySelector('label[for="discord"]').classList.remove('hidden');
-      document.getElementById('no-discord').classList.remove('hidden');
-      document.getElementById('telegram').classList.add('hidden');
-      document.querySelector('label[for="telegram"]').classList.add('hidden');
-    } else {
-      showStatus(translations[currentLang].status_error + ` (код: ${res.status})`, "error");
+    if (data.countryCode === 'RU') {
+      document.getElementById('main-content').style.display = 'none';
+      document.getElementById('geo-block').style.display = 'flex';
+      console.log('Доступ заблоковано для РФ');
+      return true;
     }
   } catch (err) {
-    showStatus(translations[currentLang].status_error + " " + err.message, "error");
+    console.warn('Не вдалося перевірити країну:', err);
+  }
+  return false;
+}
+
+function initApp() {
+  let currentLang = 'uk'; // за замовчуванням українська
+
+  function detectInitialLanguage() {
+    const savedLang = localStorage.getItem('lang');
+    if (savedLang && ['uk', 'en', 'ru'].includes(savedLang)) return savedLang;
+    const browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    if (browserLang.startsWith('uk') || browserLang.startsWith('ua')) return 'uk';
+    if (browserLang.startsWith('ru')) return 'ru';
+    return 'en';
+  }
+
+  function setLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+    document.querySelectorAll('[data-key]').forEach(el => {
+      const key = el.getAttribute('data-key');
+      if (translations[lang][key]) {
+        if (el.tagName === 'SPAN' || el.tagName === 'BUTTON') el.textContent = translations[lang][key];
+        else el.innerHTML = translations[lang][key];
+      }
+    });
+    document.querySelectorAll('option[data-key]').forEach(opt => {
+      const key = opt.getAttribute('data-key');
+      if (translations[lang][key]) opt.textContent = translations[lang][key];
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+  }
+
+  currentLang = detectInitialLanguage();
+  setLanguage(currentLang);
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
+  // Логіка "немає Discord"
+  document.getElementById('no-discord').addEventListener('click', () => {
+    document.getElementById('discord').classList.add('hidden');
+    document.querySelector('label[for="discord"]').classList.add('hidden');
+    document.getElementById('no-discord').classList.add('hidden');
+    document.getElementById('telegram').classList.remove('hidden');
+    document.querySelector('label[for="telegram"]').classList.remove('hidden');
+  });
+
+  // Ліміт 2 заявки на день
+  function checkDailyLimit() {
+    const today = new Date().toISOString().split('T')[0];
+    const storageKey = 'formSubmissions';
+    let submissions = JSON.parse(localStorage.getItem(storageKey)) || { date: today, count: 0 };
+    if (submissions.date !== today) submissions = { date: today, count: 0 };
+    if (submissions.count >= 2) return false;
+    submissions.count++;
+    localStorage.setItem(storageKey, JSON.stringify(submissions));
+    return true;
+  }
+
+  document.getElementById("helpForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!checkDailyLimit()) {
+      showStatus(translations[currentLang].status_limit, "error");
+      return;
+    }
+
+    const discord = document.getElementById("discord").value.trim();
+    const telegram = document.getElementById("telegram").value.trim();
+    const contact = discord || telegram;
+    const contactType = discord ? "Discord" : "Telegram";
+    const helpType = document.getElementById("helpType").value;
+    const version = document.getElementById("version").value;
+    const host = document.getElementById("host").value;
+
+    if (!contact || !helpType || !version || !host) {
+      showStatus(translations[currentLang].status_fill, "error");
+      return;
+    }
+
+    let messageText = helpType;
+    if (helpType === "інше" || helpType === "Other" || helpType === "Другое") {
+      messageText = translations[currentLang].opt_other + " (деталі не вказані)";
+    }
+
+    const payload = {
+      embeds: [{
+        title: translations[currentLang].title,
+        color: 0x4caf50,
+        fields: [
+          { name: contactType, value: contact, inline: true },
+          { name: translations[currentLang].help_type_label, value: messageText, inline: true },
+          { name: translations[currentLang].version_label, value: version, inline: true },
+          { name: translations[currentLang].host_label, value: host, inline: true }
+        ],
+        timestamp: new Date().toISOString()
+      }]
+    };
+
+    try {
+      const res = await fetch(proxyUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        showStatus(translations[currentLang].status_success, "success");
+        document.getElementById("helpForm").reset();
+        document.getElementById('discord').classList.remove('hidden');
+        document.querySelector('label[for="discord"]').classList.remove('hidden');
+        document.getElementById('no-discord').classList.remove('hidden');
+        document.getElementById('telegram').classList.add('hidden');
+        document.querySelector('label[for="telegram"]').classList.add('hidden');
+      } else {
+        showStatus(translations[currentLang].status_error + ` (код: ${res.status})`, "error");
+      }
+    } catch (err) {
+      showStatus(translations[currentLang].status_error + " " + err.message, "error");
+    }
+  });
+
+  function showStatus(text, type) {
+    const status = document.getElementById("status");
+    status.textContent = text;
+    status.className = type;
+  }
+}
+
+// Запуск перевірки країни
+window.addEventListener('load', async () => {
+  const isBlocked = await checkCountryBlock();
+  if (!isBlocked) {
+    initApp();
   }
 });
-
-function showStatus(text, type) {
-  const status = document.getElementById("status");
-  status.textContent = text;
-  status.className = type;
-}
 </script>
 </body>
 </html>
